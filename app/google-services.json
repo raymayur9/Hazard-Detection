@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "301928159534",
+    "project_id": "hazard-detection-4a7b3",
+    "storage_bucket": "hazard-detection-4a7b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301928159534:android:3a8a412410523b1d4102bf",
+        "android_client_info": {
+          "package_name": "com.hwi.hazarddetection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "301928159534-kcogd6faa4nubndl3rfhtkeh7addoq0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh8mrxsr4KmmmRcUD-8ZGL7JFJSi1zRJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "301928159534-kcogd6faa4nubndl3rfhtkeh7addoq0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

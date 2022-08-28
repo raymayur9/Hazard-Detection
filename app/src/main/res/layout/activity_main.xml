@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/tvTemperature"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/temperature"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/tvTemperatureValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:text="36°C"-->
+<!--        app:layout_constraintTop_toTopOf="@id/tvTemperature"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/tvHumidity"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/humidity"-->
+<!--        android:layout_marginTop="@dimen/text_margin"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tvTemperature"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/tvHumidityValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:text="60%"-->
+<!--        app:layout_constraintTop_toTopOf="@id/tvHumidity"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/tvPressure"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/pressure"-->
+<!--        android:layout_marginTop="@dimen/text_margin"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tvHumidity"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/tvPressureValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:text="10 Pa"-->
+<!--        app:layout_constraintTop_toTopOf="@id/tvPressure"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/tvLighting"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/lighting"-->
+<!--        android:layout_marginTop="@dimen/text_margin"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tvPressure"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:id="@+id/tvLightingValue"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:text="10"-->
+<!--        app:layout_constraintTop_toTopOf="@id/tvLighting"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/app_name"
+                app:menu="@menu/top_app_bar"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginEnd="@dimen/common_margin"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/alert"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginTop="@dimen/text_margin"
+            app:layout_constraintTop_toBottomOf="@id/recyclerView"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvAlertValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Fire"
+            android:layout_marginEnd="@dimen/common_margin"
+            app:layout_constraintTop_toTopOf="@id/tvAlert"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

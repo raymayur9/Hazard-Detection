@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Hazard Detection</string>
+    <string name="temperature">Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="lighting">Lighting</string>
+    <string name="alert">Alert</string>
+    <string name="notification_subtitle">Tap to see details.</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="sign_out_confirmation">Are you sure you want to sign out?</string>
+    <string name="cancel">Cancel</string>
+</resources>
