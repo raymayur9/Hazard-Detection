@@ -3,6 +3,7 @@ package com.hwi.hazarddetection
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -23,6 +24,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sensorDao: SensorDao
     private lateinit var adapter: SensorAdapter
     private lateinit var googleSignInClient: GoogleSignInClient
+
+//    private var altitude = -1f
+    private var humidity = -1f
+    private var pressure = -1f
+    private var smoke = -1f
+//    private var sound = -1f
+    private var temperature = -1f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                 false
         }
         setUpRecyclerView()
+        setAlerts()
     }
 
     private fun setUpRecyclerView() {
@@ -75,6 +84,110 @@ class MainActivity : AppCompatActivity() {
 
         adapter = SensorAdapter(recyclerViewOption)
         binding.recyclerView.adapter = adapter
+    }
+
+    private fun setAlerts() {
+        val sensorCollection = sensorDao.sensorCollection
+
+//        val altitudeDoc = sensorCollection.document("1")
+//        altitudeDoc.addSnapshotListener { snapshot, e ->
+//            if (e != null) {
+//                Log.w(TAG, "Listen failed.", e)
+//                return@addSnapshotListener
+//            }
+//
+//            if (snapshot != null && snapshot.exists()) {
+//                altitude = (snapshot.data?.get("value") as String).toInt()
+//                invalidateSensors()
+//            } else {
+//                Log.d(TAG, "Current data: null")
+//            }
+//        }
+
+        val humidityDoc = sensorCollection.document("2")
+        humidityDoc.addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            if (snapshot != null && snapshot.exists()) {
+                humidity = (snapshot.data?.get("value") as String).toFloat()
+                invalidateSensors()
+            } else {
+                Log.d(TAG, "Current data: null")
+            }
+        }
+
+        val pressureDoc = sensorCollection.document("3")
+        pressureDoc.addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            if (snapshot != null && snapshot.exists()) {
+                pressure = (snapshot.data?.get("value") as String).toFloat()
+                invalidateSensors()
+            } else {
+                Log.d(TAG, "Current data: null")
+            }
+        }
+
+        val smokeDoc = sensorCollection.document("4")
+        smokeDoc.addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            if (snapshot != null && snapshot.exists()) {
+                smoke = (snapshot.data?.get("value") as String).toFloat()
+                invalidateSensors()
+            } else {
+                Log.d(TAG, "Current data: null")
+            }
+        }
+
+//        val soundDoc = sensorCollection.document("5")
+//        soundDoc.addSnapshotListener { snapshot, e ->
+//            if (e != null) {
+//                Log.w(TAG, "Listen failed.", e)
+//                return@addSnapshotListener
+//            }
+//
+//            if (snapshot != null && snapshot.exists()) {
+//                sound = (snapshot.data?.get("value") as String).toInt()
+//                invalidateSensors()
+//            } else {
+//                Log.d(TAG, "Current data: null")
+//            }
+//        }
+
+        val temperatureDoc = sensorCollection.document("6")
+        temperatureDoc.addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            if (snapshot != null && snapshot.exists()) {
+                temperature = (snapshot.data?.get("value") as String).toFloat()
+                invalidateSensors()
+            } else {
+                Log.d(TAG, "Current data: null")
+            }
+        }
+
+    }
+    private fun invalidateSensors() {
+        if (smoke > 100f && temperature >= 65f) {
+            binding.tvAlertValue.text = "Fire"
+            binding.tvAlertValue.setTextColor(resources.getColor(R.color.red))
+        } else {
+            binding.tvAlertValue.text = "--"
+            binding.tvAlertValue.setTextColor(resources.getColor(R.color.green))
+        }
     }
 
     override fun onStart() {

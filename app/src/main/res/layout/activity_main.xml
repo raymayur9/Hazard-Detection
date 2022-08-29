@@ -103,22 +103,37 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/appBarLayout"/>
 
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_crisis_alert_24"
+            android:layout_marginStart="@dimen/common_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvAlert"
+            app:layout_constraintBottom_toBottomOf="@id/tvAlert"/>
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvAlert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/alert"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginStart="@dimen/dimen_8"
             android:layout_marginTop="@dimen/text_margin"
             app:layout_constraintTop_toBottomOf="@id/recyclerView"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/ivIcon" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvAlertValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Fire"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FF0000"
             android:layout_marginEnd="@dimen/common_margin"
             app:layout_constraintTop_toTopOf="@id/tvAlert"
             app:layout_constraintEnd_toEndOf="parent" />
