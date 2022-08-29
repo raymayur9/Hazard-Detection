@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: SensorAdapter
     private lateinit var googleSignInClient: GoogleSignInClient
 
-//    private var altitude = -1f
+    private var altitude = -1f
     private var humidity = -1f
     private var pressure = -1f
     private var smoke = -1f
-//    private var sound = -1f
+    private var sound = -1f
     private var temperature = -1f
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,35 +89,35 @@ class MainActivity : AppCompatActivity() {
     private fun setAlerts() {
         val sensorCollection = sensorDao.sensorCollection
 
-//        val altitudeDoc = sensorCollection.document("1")
-//        altitudeDoc.addSnapshotListener { snapshot, e ->
-//            if (e != null) {
-//                Log.w(TAG, "Listen failed.", e)
-//                return@addSnapshotListener
-//            }
-//
-//            if (snapshot != null && snapshot.exists()) {
-//                altitude = (snapshot.data?.get("value") as String).toInt()
-//                invalidateSensors()
-//            } else {
-//                Log.d(TAG, "Current data: null")
-//            }
-//        }
-
-        val humidityDoc = sensorCollection.document("2")
-        humidityDoc.addSnapshotListener { snapshot, e ->
+        val altitudeDoc = sensorCollection.document("1")
+        altitudeDoc.addSnapshotListener { snapshot, e ->
             if (e != null) {
                 Log.w(TAG, "Listen failed.", e)
                 return@addSnapshotListener
             }
 
             if (snapshot != null && snapshot.exists()) {
-                humidity = (snapshot.data?.get("value") as String).toFloat()
+                altitude = (snapshot.data?.get("value") as String).toFloat()
                 invalidateSensors()
             } else {
                 Log.d(TAG, "Current data: null")
             }
         }
+
+//        val humidityDoc = sensorCollection.document("2")
+//        humidityDoc.addSnapshotListener { snapshot, e ->
+//            if (e != null) {
+//                Log.w(TAG, "Listen failed.", e)
+//                return@addSnapshotListener
+//            }
+//
+//            if (snapshot != null && snapshot.exists()) {
+//                humidity = (snapshot.data?.get("value") as String).toFloat()
+//                invalidateSensors()
+//            } else {
+//                Log.d(TAG, "Current data: null")
+//            }
+//        }
 
         val pressureDoc = sensorCollection.document("3")
         pressureDoc.addSnapshotListener { snapshot, e ->
@@ -149,20 +149,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-//        val soundDoc = sensorCollection.document("5")
-//        soundDoc.addSnapshotListener { snapshot, e ->
-//            if (e != null) {
-//                Log.w(TAG, "Listen failed.", e)
-//                return@addSnapshotListener
-//            }
-//
-//            if (snapshot != null && snapshot.exists()) {
-//                sound = (snapshot.data?.get("value") as String).toInt()
-//                invalidateSensors()
-//            } else {
-//                Log.d(TAG, "Current data: null")
-//            }
-//        }
+        val soundDoc = sensorCollection.document("5")
+        soundDoc.addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            if (snapshot != null && snapshot.exists()) {
+                sound = (snapshot.data?.get("value") as String).toFloat()
+                invalidateSensors()
+            } else {
+                Log.d(TAG, "Current data: null")
+            }
+        }
 
         val temperatureDoc = sensorCollection.document("6")
         temperatureDoc.addSnapshotListener { snapshot, e ->
@@ -181,8 +181,11 @@ class MainActivity : AppCompatActivity() {
 
     }
     private fun invalidateSensors() {
-        if (smoke > 100f && temperature >= 65f) {
+        if (smoke >= 1000f && temperature >= 28f) {
             binding.tvAlertValue.text = "Fire"
+            binding.tvAlertValue.setTextColor(resources.getColor(R.color.red))
+        } else if (smoke >= 1000f || temperature >= 28f) {
+            binding.tvAlertValue.text = "Chemical Activities"
             binding.tvAlertValue.setTextColor(resources.getColor(R.color.red))
         } else {
             binding.tvAlertValue.text = "--"
